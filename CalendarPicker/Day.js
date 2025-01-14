@@ -42,6 +42,7 @@ export default function Day(props) {
     minRangeDuration,
     maxRangeDuration,
     enableDateChange,
+    dayComponent
   } = props;
 
   const thisDay = new Date(year, month, day, 12);
@@ -198,7 +199,7 @@ export default function Day(props) {
             styles.selectedDisabledText, selectedDisabledDatesTextStyle,
               overrideOutOfRangeTextStyle
             ]}>
-              {day}
+              {dayComponent(day) || day}
             </Text>
           </View>
         </View>
@@ -211,7 +212,7 @@ export default function Day(props) {
             style={[custom.style, computedSelectedDayStyle, selectedDayStyle]}
             onPress={() => onPressDay({ year, month, day })}>
             <Text style={[styles.dayLabel, textStyle, custom.textStyle, selectedDayTextStyle]}>
-              {day}
+              {dayComponent(day) || day}
             </Text>
           </TouchableOpacity>
         </View>
@@ -230,7 +231,7 @@ export default function Day(props) {
       <View style={[styles.dayWrapper, custom.containerStyle]}>
         <View style={[styles.dayButton, custom.style]}>
           <Text style={[textStyle, styles.disabledText, disabledDatesTextStyle, custom.textStyle]}>
-            {day}
+            {dayComponent || day}
           </Text>
         </View>
       </View>
