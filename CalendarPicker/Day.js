@@ -259,23 +259,35 @@ export default function Day(props) {
           <View
             style={[custom.style, computedSelectedDayStyle, selectedDayStyle]}
           >
-            <Text
-              style={[
-                styles.dayLabel,
-                textStyle,
-                styles.disabledText,
-                disabledDatesTextStyle,
-                styles.selectedDisabledText,
-                selectedDisabledDatesTextStyle,
-                overrideOutOfRangeTextStyle,
-              ]}
-            >
-              {dayComponent?(typeof dayComponent === 'function' ? (
-                dayComponent(day)
+            {dayComponent ? (
+              typeof dayComponent === "function" ? (
+                dayComponent(day, [
+                  styles.dayLabel,
+                  textStyle,
+                  styles.disabledText,
+                  disabledDatesTextStyle,
+                  styles.selectedDisabledText,
+                  selectedDisabledDatesTextStyle,
+                  overrideOutOfRangeTextStyle,
+                ])
               ) : (
                 dayComponent
-              )):day}
-            </Text>
+              )
+            ) : (
+              <Text
+                style={[
+                  styles.dayLabel,
+                  textStyle,
+                  styles.disabledText,
+                  disabledDatesTextStyle,
+                  styles.selectedDisabledText,
+                  selectedDisabledDatesTextStyle,
+                  overrideOutOfRangeTextStyle,
+                ]}
+              >
+                {day}
+              </Text>
+            )}
           </View>
         </View>
       );
@@ -287,20 +299,33 @@ export default function Day(props) {
             style={[custom.style, computedSelectedDayStyle, selectedDayStyle]}
             onPress={() => onPressDay({ year, month, day })}
           >
-            <Text
-              style={[
-                styles.dayLabel,
-                textStyle,
-                custom.textStyle,
-                selectedDayTextStyle,
-              ]}
-            >
-              {dayComponent?(typeof dayComponent === 'function' ? (
-                dayComponent(day)
+            {dayComponent ? (
+              typeof dayComponent === "function" ? (
+                dayComponent(day, [
+                  styles.dayLabel,
+                  textStyle,
+                  custom.textStyle,
+                  selectedDayTextStyle,
+                ])
               ) : (
                 dayComponent
-              )):day}
-            </Text>
+              )
+            ) : (
+              <Text
+                style={[
+                  styles.dayLabel,
+                  textStyle,
+                  custom.textStyle,
+                  selectedDayTextStyle,
+                ]}
+              >
+                {dayComponent
+                  ? typeof dayComponent === "function"
+                    ? dayComponent(day)
+                    : dayComponent
+                  : day}
+              </Text>
+            )}
           </TouchableOpacity>
         </View>
       );
