@@ -270,7 +270,11 @@ export default function Day(props) {
                 overrideOutOfRangeTextStyle,
               ]}
             >
-              {dayComponent ? React.cloneElement(dayComponent, { day }) : day}
+              {dayComponent?(typeof dayComponent === 'function' ? (
+                dayComponent(day)
+              ) : (
+                dayComponent
+              )):day}
             </Text>
           </View>
         </View>
@@ -291,7 +295,11 @@ export default function Day(props) {
                 selectedDayTextStyle,
               ]}
             >
-              {dayComponent ? React.cloneElement(dayComponent, { day }) : day}
+              {dayComponent?(typeof dayComponent === 'function' ? (
+                dayComponent(day)
+              ) : (
+                dayComponent
+              )):day}
             </Text>
           </TouchableOpacity>
         </View>
