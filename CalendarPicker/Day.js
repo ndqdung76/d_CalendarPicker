@@ -301,7 +301,7 @@ export default function Day(props) {
           >
             {dayComponent ? (
               typeof dayComponent === "function" ? (
-                dayComponent(day, [
+                dayComponent(day, month, year, [
                   styles.dayLabel,
                   textStyle,
                   custom.textStyle,
@@ -321,7 +321,7 @@ export default function Day(props) {
               >
                 {dayComponent
                   ? typeof dayComponent === "function"
-                    ? dayComponent(day)
+                    ? dayComponent(day, month, year)
                     : dayComponent
                   : day}
               </Text>
